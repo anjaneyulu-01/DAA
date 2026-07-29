@@ -20,13 +20,10 @@ build/
 bin/
 obj/
 
-# VSCode (keep shared config, ignore local overrides)
-.vscode/*.log
-.vscode/ipch/
+# VSCode
+.vscode/
 
 # OS files
 Thumbs.db
 .DS_Store
 desktop.ini
-.vscode
-/.vscode
