@@ -1,0 +1,30 @@
+# Compiled binaries / executables
+*.exe
+*.out
+*.app
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+
+# Debug files
+*.pdb
+*.ilk
+*.idb
+
+# Build directories
+build/
+bin/
+obj/
+
+# VSCode (keep shared config, ignore local overrides)
+.vscode/*.log
+.vscode/ipch/
+
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
