@@ -2,23 +2,40 @@
 #include <vector>
 using namespace std;
 
-int countCombinations(vector<int>& coins, int amount){
-    vector<int> dp(amount + 1, 0);
+int countCombinations(vector<int>& coins, int amount)
+{
+    int n = coins.size();
 
-    dp[0] = 1;
+    vector<vector<int>> dp(n + 1, vector<int>(amount + 1, 0));
+    for (int i = 0; i <= n; i++){
+        dp[i][0] = 1;
+    }
 
-    for (int coin : coins)
-    {
-        for (int j = coin; j <= amount; j++)
-        {
-            dp[j] += dp[j - coin];
+    for (int i = 1; i <= n; i++){
+        for (int j = 1; j <= amount; j++){
+            if (coins[i - 1] <= j){
+                dp[i][j] = dp[i - 1][j] + dp[i][j - coins[i - 1]];
+            }
+            else{
+                dp[i][j] = dp[i - 1][j];
+            }
         }
     }
 
-    return dp[amount];
+    cout << "\nDP Table:\n\n";
+
+    for (int i = 0; i <= n; i++){
+        for (int j = 0; j <= amount; j++){
+            cout << dp[i][j] << "\t";
+        }
+        cout << endl;
+    }
+
+    return dp[n][amount];
 }
 
-int main(){
+int main()
+{
     int n;
 
     cout << "Enter number of coin types: ";
@@ -27,7 +44,9 @@ int main(){
     vector<int> coins(n);
 
     cout << "Enter coin values: ";
-    for (int i = 0; i < n; i++){
+
+    for (int i = 0; i < n; i++)
+    {
         cin >> coins[i];
     }
 
@@ -36,10 +55,10 @@ int main(){
     cout << "Enter target amount: ";
     cin >> amount;
 
-    int combinations = countCombinations(coins, amount);
+    int result = countCombinations(coins, amount);
 
-    cout << "Total Number of Combinations = "
-         << combinations << endl;
+    cout << "\nTotal Number of Combinations = "
+         << result << endl;
 
     return 0;
 }
